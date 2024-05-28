@@ -1,0 +1,26 @@
+server1
+
+a
+  -> c   
+b      -> e -> f
+     d
+     
+
+server2
+
+x1
+x2 -> x
+x3
+        -> z
+y1
+   -> y
+y2
+
+
+server3
+
+a -> a
+       -> b
+     b      -> c
+          c      -> d
+               d
