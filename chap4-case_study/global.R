@@ -64,28 +64,6 @@ selected |>
 
 prod_codes <- setNames(products$prod_code, products$title)
 
-selected |> 
-  mutate(diag = fct_lump_n(fct_infreq(diag), n = 5)) |> 
-  count(diag, wt = weight, sort = TRUE)
-
-selected |> 
-  mutate(diag = fct_lump(fct_infreq(diag), n = 5)) |> 
-  group_by(diag) |> 
-  summarise(n = as.integer(sum(weight)))
-
-selected |> 
-  mutate(diag = fct_lump(fct_infreq(diag), n = 5)) |> 
-  group_by(diag) |> 
-  summarise(n = n())
-
-selected |> 
-  group_by(diag) |> 
-  summarise(n = n(), weighted_freq = as.integer(sum(weight))) |> 
-  arrange(desc(weighted_freq))
-
-
-fct_infreq(selected$diag, ordered = TRUE)
-
 count_top <- function(df, var, n = 5) {
   df |> 
     mutate({{ var }} := fct_lump_n(fct_infreq({{ var }}), n = n)) |> 
@@ -94,3 +72,14 @@ count_top <- function(df, var, n = 5) {
     arrange({{ var }})
 }
 
+# exerc 2
+
+selected |> 
+  mutate(diag = fct_lump(fct_infreq(diag), n = 5)) |> 
+  group_by(diag) |> 
+  summarise(n = as.integer(sum(weight)))
+
+selected |> 
+  mutate(diag = fct_infreq(fct_lump(diag, n = 5))) |> 
+  group_by(diag) |> 
+  summarise(n = as.integer(sum(weight)))
