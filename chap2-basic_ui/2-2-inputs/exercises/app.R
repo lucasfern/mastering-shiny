@@ -23,8 +23,8 @@ ui <- fluidPage(
   
   # 4
   selectInput("wc_champions", "Selecione um país campeão do mundo",
-              list("América do Sul" = list("Argentina", "Brasil", "Uruguai"),
-                   "Europa" = list("Alemanha", "Espanha", "França", "Inglaterra", "Itália")))
+              list("América do Sul" = c("Argentina", "Brasil", "Uruguai"),
+                   "Europa" = c("Alemanha", "Espanha", "França", "Inglaterra", "Itália")))
 )
 
 server <- function(input, output, session) {
